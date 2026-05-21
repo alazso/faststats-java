@@ -4,6 +4,7 @@ import com.google.gson.JsonElement;
 import org.jetbrains.annotations.Contract;
 import org.jspecify.annotations.Nullable;
 
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.Callable;
 
@@ -94,6 +95,54 @@ public interface Metric<T> {
     @Contract(value = "_, _ -> new", pure = true)
     static Metric<Number[]> numberArray(@SourceId final String id, final Callable<Number @Nullable []> callable) throws IllegalArgumentException {
         return new ArrayMetric<>(id, callable);
+    }
+
+    /**
+     * Create a string map metric.
+     *
+     * @param id       the source id
+     * @param callable the metric data callable
+     * @return the string map metric
+     * @throws IllegalArgumentException if the source id is invalid
+     * @apiNote The callable must be thread-safe and pure (i.e. not modify any shared state).
+     * @see #compute()
+     * @since 0.23.0
+     */
+    @Contract(value = "_, _ -> new", pure = true)
+    static Metric<Map<String, String>> stringMap(@SourceId final String id, final Callable<@Nullable Map<String, String>> callable) throws IllegalArgumentException {
+        return new MapMetric<>(id, callable);
+    }
+
+    /**
+     * Create a boolean map metric.
+     *
+     * @param id       the source id
+     * @param callable the metric data callable
+     * @return the boolean map metric
+     * @throws IllegalArgumentException if the source id is invalid
+     * @apiNote The callable must be thread-safe and pure (i.e. not modify any shared state).
+     * @see #compute()
+     * @since 0.23.0
+     */
+    @Contract(value = "_, _ -> new", pure = true)
+    static Metric<Map<String, Boolean>> booleanMap(@SourceId final String id, final Callable<@Nullable Map<String, Boolean>> callable) throws IllegalArgumentException {
+        return new MapMetric<>(id, callable);
+    }
+
+    /**
+     * Create a number map metric.
+     *
+     * @param id       the source id
+     * @param callable the metric data callable
+     * @return the number map metric
+     * @throws IllegalArgumentException if the source id is invalid
+     * @apiNote The callable must be thread-safe and pure (i.e. not modify any shared state).
+     * @see #compute()
+     * @since 0.23.0
+     */
+    @Contract(value = "_, _ -> new", pure = true)
+    static Metric<Map<String, Number>> numberMap(@SourceId final String id, final Callable<@Nullable Map<String, Number>> callable) throws IllegalArgumentException {
+        return new MapMetric<>(id, callable);
     }
 
     /**
