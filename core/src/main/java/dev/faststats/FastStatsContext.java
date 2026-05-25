@@ -2,8 +2,6 @@ package dev.faststats;
 
 import org.jetbrains.annotations.Contract;
 
-import java.time.Duration;
-
 /**
  * Shared FastStats context.
  * <p>
@@ -42,46 +40,13 @@ public sealed interface FastStatsContext permits SimpleContext {
     Metrics.Factory metricsFactory();
 
     /**
-     * Creates a new feature flag service backed by the context's token.
+     * Creates a new feature flag service factory bound to this context.
      *
      * @return a new feature flag service factory
      * @since 0.24.0
      */
     @Contract(value = "-> new", pure = true)
-    FeatureFlagService featureFlags();
-
-    /**
-     * Creates a new feature flag service backed by the context's token and attributes.
-     *
-     * @param attributes the global targeting attributes
-     * @return the feature flag service
-     * @since 0.23.0
-     */
-    @Contract(value = "_ -> new", pure = true)
-    FeatureFlagService featureFlags(final Attributes attributes);
-
-    /**
-     * Creates a new feature flag service backed by the context's token, and TTL.
-     *
-     * @param ttl the cache time-to-live for resolved flag values
-     * @return the feature flag service
-     * @throws IllegalArgumentException if the TTL is negative
-     * @since 0.23.0
-     */
-    @Contract(value = "_ -> new", pure = true)
-    FeatureFlagService featureFlags(final Duration ttl);
-
-    /**
-     * Creates a new feature flag service backed by the context's token, attributes, and TTL.
-     *
-     * @param attributes the global targeting attributes
-     * @param ttl        the cache time-to-live for resolved flag values
-     * @return the feature flag service
-     * @throws IllegalArgumentException if the TTL is negative
-     * @since 0.23.0
-     */
-    @Contract(value = "_, _ -> new", pure = true)
-    FeatureFlagService featureFlags(final Attributes attributes, final Duration ttl);
+    FeatureFlagService.Factory featureFlagServiceFactory();
 
     /**
      * Create and attach a new context-aware error tracker.

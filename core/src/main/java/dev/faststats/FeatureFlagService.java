@@ -8,7 +8,7 @@ import java.util.Optional;
 /**
  * A service for managing feature flags.
  * <p>
- * Use one of the static {@code create} methods to construct a service instance.
+ * Use {@link FastStatsContext#featureFlagServiceFactory()} to construct a service instance.
  *
  * @since 0.24.0
  */
@@ -109,4 +109,45 @@ public sealed interface FeatureFlagService permits SimpleFeatureFlagService {
      */
     @Contract(mutates = "this")
     void shutdown();
+
+    /**
+     * A feature flag service factory.
+     *
+     * @since 0.24.0
+     */
+    sealed interface Factory permits SimpleFeatureFlagService.Factory {
+        /**
+         * Sets the global targeting attributes for services created by this factory.
+         * <p>
+         * These attributes apply to every flag defined by the service and are
+         * merged with any per-flag attributes supplied during definition.
+         *
+         * @param attributes the global targeting attributes
+         * @return the feature flag service factory
+         * @since 0.24.0
+         */
+        @Contract(mutates = "this")
+        Factory attributes(Attributes attributes);
+
+        /**
+         * Sets the cache time-to-live for resolved flag values.
+         *
+         * @param ttl the cache time-to-live for resolved flag values
+         * @return the feature flag service factory
+         * @throws IllegalArgumentException if the TTL is negative
+         * @since 0.24.0
+         */
+        @Contract(mutates = "this")
+        Factory ttl(Duration ttl) throws IllegalArgumentException;
+
+        /**
+         * Creates a new feature flag service.
+         *
+         * @return the feature flag service
+         * @throws IllegalArgumentException if the TTL is negative
+         * @since 0.24.0
+         */
+        @Contract(value = " -> new", pure = true)
+        FeatureFlagService create() throws IllegalArgumentException;
+    }
 }

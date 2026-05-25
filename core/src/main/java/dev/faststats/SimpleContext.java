@@ -2,11 +2,9 @@ package dev.faststats;
 
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Contract;
-import org.jspecify.annotations.Nullable;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
-import java.time.Duration;
 import java.util.Collections;
 import java.util.Properties;
 import java.util.Set;
@@ -72,26 +70,8 @@ public non-sealed abstract class SimpleContext implements FastStatsContext {
 
     @Override
     @Contract(value = " -> new", pure = true)
-    public final FeatureFlagService featureFlags() {
-        return new SimpleFeatureFlagService(config, token, null, Duration.ofMinutes(5));
-    }
-
-    @Override
-    @Contract(value = "_ -> new", pure = true)
-    public final FeatureFlagService featureFlags(final Attributes attributes) {
-        return new SimpleFeatureFlagService(config, token, attributes, Duration.ofMinutes(5));
-    }
-
-    @Override
-    @Contract(value = "_ -> new", pure = true)
-    public final FeatureFlagService featureFlags(final Duration ttl) {
-        return new SimpleFeatureFlagService(config, token, null, ttl);
-    }
-
-    @Override
-    @Contract(value = "_, _ -> new", pure = true)
-    public final FeatureFlagService featureFlags(@Nullable final Attributes attributes, final Duration ttl) {
-        return new SimpleFeatureFlagService(config, token, attributes, ttl);
+    public final FeatureFlagService.Factory featureFlagServiceFactory() {
+        return new SimpleFeatureFlagService.Factory(config, token);
     }
 
     @Override

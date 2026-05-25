@@ -25,6 +25,7 @@ import java.util.concurrent.ConcurrentHashMap;
 final class SimpleFeatureFlagService implements FeatureFlagService {
     private static final Logger logger = LoggerFactory.factory().getLogger(SimpleFeatureFlagService.class);
     private static final URI url = getFlagsServerUrl();
+    private static final Duration DEFAULT_TTL = Duration.ofMinutes(5);
 
     private final HttpClient httpClient = HttpClient.newBuilder()
             .connectTimeout(Duration.ofSeconds(3))
@@ -220,5 +221,35 @@ final class SimpleFeatureFlagService implements FeatureFlagService {
     public void shutdown() {
         fetchesInProgress.values().forEach(fetch -> fetch.cancel(true));
         fetchesInProgress.clear();
+    }
+
+    static final class Factory implements FeatureFlagService.Factory {
+        private final Config config;
+        private final @Token String token;
+        private @Nullable Attributes attributes;
+        private Duration ttl = DEFAULT_TTL;
+
+        Factory(final Config config, final @Token String token) {
+            this.config = config;
+            this.token = token;
+        }
+
+        @Override
+        public FeatureFlagService.Factory attributes(final Attributes attributes) {
+            this.attributes = attributes;
+            return this;
+        }
+
+        @Override
+        public FeatureFlagService.Factory ttl(final Duration ttl) throws IllegalArgumentException {
+            if (ttl.isNegative()) throw new IllegalArgumentException("TTL cannot be negative");
+            this.ttl = ttl;
+            return this;
+        }
+
+        @Override
+        public FeatureFlagService create() throws IllegalArgumentException {
+            return new SimpleFeatureFlagService(config, token, attributes, ttl);
+        }
     }
 }
