@@ -11,7 +11,7 @@ import java.nio.file.Path;
 /**
  * Bukkit FastStats context.
  *
- * @since 0.23.0
+ * @since 0.24.0
  */
 public final class BukkitContext extends SimpleContext {
     final Plugin plugin;

@@ -11,7 +11,7 @@ import org.jetbrains.annotations.Contract;
 /**
  * Hytale FastStats context.
  *
- * @since 0.23.0
+ * @since 0.24.0
  */
 public final class HytaleContext extends SimpleContext {
     public HytaleContext(final JavaPlugin plugin, @Token final String token) {

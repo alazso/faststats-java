@@ -12,14 +12,14 @@ import java.util.concurrent.Callable;
  * A metric.
  *
  * @param <T> the metric data type
- * @since 0.23.0
+ * @since 0.24.0
  */
 public interface Metric<T> {
     /**
      * Get the source id.
      *
      * @return the source id
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @SourceId
     @Contract(pure = true)
@@ -31,7 +31,7 @@ public interface Metric<T> {
      * @return an optional containing the metric data
      * @throws Exception if unable to compute the metric data
      * @implSpec The implementation must be thread-safe and pure (i.e. not modify any shared state).
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(pure = true)
     Optional<? extends T> compute() throws Exception;
@@ -44,7 +44,7 @@ public interface Metric<T> {
      * @implSpec The implementation must call {@link #compute()} to get the metric data
      * and follow the same thread-safety and pureness requirements.
      * @see #compute()
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(pure = true)
     Optional<JsonElement> getData() throws Exception;
@@ -58,7 +58,7 @@ public interface Metric<T> {
      * @throws IllegalArgumentException if the source id is invalid
      * @apiNote The callable must be thread-safe and pure (i.e. not modify any shared state).
      * @see #compute()
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(value = "_, _ -> new", pure = true)
     static Metric<String[]> stringArray(@SourceId final String id, final Callable<String @Nullable []> callable) throws IllegalArgumentException {
@@ -74,7 +74,7 @@ public interface Metric<T> {
      * @throws IllegalArgumentException if the source id is invalid
      * @apiNote The callable must be thread-safe and pure (i.e. not modify any shared state).
      * @see #compute()
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(value = "_, _ -> new", pure = true)
     static Metric<Boolean[]> booleanArray(@SourceId final String id, final Callable<Boolean @Nullable []> callable) throws IllegalArgumentException {
@@ -90,7 +90,7 @@ public interface Metric<T> {
      * @throws IllegalArgumentException if the source id is invalid
      * @apiNote The callable must be thread-safe and pure (i.e. not modify any shared state).
      * @see #compute()
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(value = "_, _ -> new", pure = true)
     static Metric<Number[]> numberArray(@SourceId final String id, final Callable<Number @Nullable []> callable) throws IllegalArgumentException {
@@ -106,7 +106,7 @@ public interface Metric<T> {
      * @throws IllegalArgumentException if the source id is invalid
      * @apiNote The callable must be thread-safe and pure (i.e. not modify any shared state).
      * @see #compute()
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(value = "_, _ -> new", pure = true)
     static Metric<Map<String, ? extends String>> stringMap(@SourceId final String id, final Callable<? extends @Nullable Map<String, String>> callable) throws IllegalArgumentException {
@@ -122,7 +122,7 @@ public interface Metric<T> {
      * @throws IllegalArgumentException if the source id is invalid
      * @apiNote The callable must be thread-safe and pure (i.e. not modify any shared state).
      * @see #compute()
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(value = "_, _ -> new", pure = true)
     static Metric<Map<String, ? extends Boolean>> booleanMap(@SourceId final String id, final Callable<? extends @Nullable Map<String, Boolean>> callable) throws IllegalArgumentException {
@@ -138,7 +138,7 @@ public interface Metric<T> {
      * @throws IllegalArgumentException if the source id is invalid
      * @apiNote The callable must be thread-safe and pure (i.e. not modify any shared state).
      * @see #compute()
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(value = "_, _ -> new", pure = true)
     static Metric<Map<String, ? extends Number>> numberMap(@SourceId final String id, final Callable<? extends @Nullable Map<String, ? extends Number>> callable) throws IllegalArgumentException {
@@ -154,7 +154,7 @@ public interface Metric<T> {
      * @throws IllegalArgumentException if the source id is invalid
      * @apiNote The callable must be thread-safe and pure (i.e. not modify any shared state).
      * @see #compute()
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(value = "_, _ -> new", pure = true)
     static Metric<Boolean> bool(@SourceId final String id, final Callable<@Nullable Boolean> callable) throws IllegalArgumentException {
@@ -170,7 +170,7 @@ public interface Metric<T> {
      * @throws IllegalArgumentException if the source id is invalid
      * @apiNote The callable must be thread-safe and pure (i.e. not modify any shared state).
      * @see #compute()
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(value = "_, _ -> new", pure = true)
     static Metric<String> string(@SourceId final String id, final Callable<@Nullable String> callable) throws IllegalArgumentException {
@@ -186,7 +186,7 @@ public interface Metric<T> {
      * @throws IllegalArgumentException if the source id is invalid
      * @apiNote The callable must be thread-safe and pure (i.e. not modify any shared state).
      * @see #compute()
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(value = "_, _ -> new", pure = true)
     static Metric<Number> number(@SourceId final String id, final Callable<@Nullable Number> callable) throws IllegalArgumentException {

@@ -10,7 +10,7 @@ import java.nio.file.Path;
 /**
  * Minestom FastStats context.
  *
- * @since 0.23.0
+ * @since 0.24.0
  */
 public final class MinestomContext extends SimpleContext {
     MinestomContext(@Token final String token) {

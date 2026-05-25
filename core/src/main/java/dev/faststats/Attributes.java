@@ -13,14 +13,14 @@ import java.util.function.BiConsumer;
  * Attributes are sent to the server on each flag fetch
  * so that targeting rules can be evaluated server-side.
  *
- * @since 0.23.0
+ * @since 0.24.0
  */
 public sealed interface Attributes permits SimpleAttributes {
     /**
      * Create new empty attributes.
      *
      * @return new attributes
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(value = " -> new", pure = true)
     static Attributes create() {
@@ -32,7 +32,7 @@ public sealed interface Attributes permits SimpleAttributes {
      *
      * @param attributes the source attributes to copy
      * @return new attributes containing the copied entries
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(value = "_ -> new", pure = true)
     static Attributes copyOf(final Attributes attributes) {
@@ -46,7 +46,7 @@ public sealed interface Attributes permits SimpleAttributes {
      * @param key   the key
      * @param value the value
      * @return these attributes
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(value = "_, _ -> this", mutates = "this")
     Attributes put(String key, String value);
@@ -58,7 +58,7 @@ public sealed interface Attributes permits SimpleAttributes {
      * @param value the value
      * @return these attributes
      * @throws IllegalArgumentException if the given value is not {@link Double#isFinite(double) finite}
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(value = "_, _ -> this", mutates = "this")
     Attributes put(String key, Number value) throws IllegalArgumentException;
@@ -69,7 +69,7 @@ public sealed interface Attributes permits SimpleAttributes {
      * @param key   the key
      * @param value the value
      * @return these attributes
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(value = "_, _ -> this", mutates = "this")
     Attributes put(String key, boolean value);
@@ -79,7 +79,7 @@ public sealed interface Attributes permits SimpleAttributes {
      *
      * @param key the key
      * @return these attributes
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(value = "_ -> this", mutates = "this")
     Attributes remove(String key);
@@ -88,7 +88,7 @@ public sealed interface Attributes permits SimpleAttributes {
      * Visit each stored attribute as its underlying JSON primitive value.
      *
      * @param action the action to invoke for each key-value pair
-     * @since 0.23.0
+     * @since 0.24.0
      */
     void forEachPrimitive(BiConsumer<String, JsonPrimitive> action);
 
@@ -100,7 +100,7 @@ public sealed interface Attributes permits SimpleAttributes {
      * @param first  the first attributes
      * @param second the second attributes, takes precedence on conflicts
      * @return new merged attributes
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(value = "_, _ -> new", pure = true)
     static Attributes join(@Nullable final Attributes first, @Nullable final Attributes second) {

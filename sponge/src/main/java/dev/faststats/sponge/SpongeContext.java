@@ -14,7 +14,7 @@ import java.nio.file.Path;
 /**
  * Sponge FastStats context.
  *
- * @since 0.23.0
+ * @since 0.24.0
  */
 public final class SpongeContext extends SimpleContext {
     final PluginContainer plugin;
@@ -42,7 +42,7 @@ public final class SpongeContext extends SimpleContext {
     /**
      * Injectable Sponge context builder.
      *
-     * @since 0.23.0
+     * @since 0.24.0
      */
     public static final class Builder {
         private final PluginContainer plugin;
@@ -54,7 +54,7 @@ public final class SpongeContext extends SimpleContext {
          * @param plugin        the plugin container
          * @param dataDirectory the shared Sponge config directory
          * @apiNote This instance can be injected into your plugin.
-         * @since 0.23.0
+         * @since 0.24.0
          */
         @Inject
         public Builder(
@@ -71,7 +71,7 @@ public final class SpongeContext extends SimpleContext {
          * @param token the FastStats project token
          * @return the Sponge context
          * @throws IllegalArgumentException if the token is invalid
-         * @since 0.23.0
+         * @since 0.24.0
          */
         public SpongeContext build(@Token final String token) throws IllegalArgumentException {
             return new SpongeContext(plugin, dataDirectory, token);

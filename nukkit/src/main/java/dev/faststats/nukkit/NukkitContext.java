@@ -13,7 +13,7 @@ import java.nio.file.Path;
 /**
  * Nukkit FastStats context.
  *
- * @since 0.23.0
+ * @since 0.24.0
  */
 public final class NukkitContext extends SimpleContext {
     final PluginBase plugin;

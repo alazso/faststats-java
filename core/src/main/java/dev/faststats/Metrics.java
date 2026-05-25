@@ -9,7 +9,7 @@ import java.util.Optional;
 /**
  * Metrics interface.
  *
- * @since 0.23.0
+ * @since 0.24.0
  */
 public interface Metrics {
     /**
@@ -29,7 +29,7 @@ public interface Metrics {
      * <i>No-op in most implementations.</i>
      *
      * @apiNote Refer to your {@code Metrics} provider's documentation.
-     * @since 0.23.0
+     * @since 0.24.0
      */
     default void ready() {
     }
@@ -39,7 +39,7 @@ public interface Metrics {
      * <p>
      * This method should be called when the application is shutting down.
      *
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(mutates = "this")
     void shutdown();
@@ -47,7 +47,7 @@ public interface Metrics {
     /**
      * A metrics factory.
      *
-     * @since 0.23.0
+     * @since 0.24.0
      */
     interface Factory {
         /**
@@ -58,7 +58,7 @@ public interface Metrics {
          * @param metric the metric to add
          * @return the metrics factory
          * @throws IllegalArgumentException if the metric is already added
-         * @since 0.23.0
+         * @since 0.24.0
          */
         @Contract(mutates = "this")
         Factory addMetric(Metric<?> metric) throws IllegalArgumentException;
@@ -70,7 +70,7 @@ public interface Metrics {
          *
          * @param flush the flush callback
          * @return the metrics factory
-         * @since 0.23.0
+         * @since 0.24.0
          */
         @Contract(mutates = "this")
         Factory onFlush(Runnable flush);
@@ -94,7 +94,7 @@ public interface Metrics {
          *
          * @return the metrics instance
          * @throws IllegalStateException if the token is not specified
-         * @since 0.23.0
+         * @since 0.24.0
          */
         @Async.Schedule
         @Contract(value = " -> new", mutates = "io")

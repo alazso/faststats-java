@@ -13,14 +13,14 @@ import java.util.concurrent.CompletableFuture;
  * the service's cache and lifecycle.
  *
  * @param <T> the flag value type
- * @since 0.23.0
+ * @since 0.24.0
  */
 public sealed interface FeatureFlag<T> permits SimpleFeatureFlag {
     /**
      * Get the flag identifier.
      *
      * @return the flag id
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(pure = true)
     String getId();
@@ -29,7 +29,7 @@ public sealed interface FeatureFlag<T> permits SimpleFeatureFlag {
      * Returns the type representing the value type of this flag.
      *
      * @return the value type class
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(pure = true)
     Type getType();
@@ -41,7 +41,7 @@ public sealed interface FeatureFlag<T> permits SimpleFeatureFlag {
      * {@link Number}.class, or {@link Boolean}.class, matching {@link #getType()}.
      *
      * @return the value type class
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(pure = true)
     Class<T> getTypeClass();
@@ -54,7 +54,7 @@ public sealed interface FeatureFlag<T> permits SimpleFeatureFlag {
      *
      * @return the cached value, if present
      * @see #fetch()
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(pure = true)
     Optional<T> getCached();
@@ -68,7 +68,7 @@ public sealed interface FeatureFlag<T> permits SimpleFeatureFlag {
      *
      * @return the expiration time of the cached value, if present
      * @see #isValid()
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(pure = true)
     Optional<Instant> getExpiration();
@@ -82,7 +82,7 @@ public sealed interface FeatureFlag<T> permits SimpleFeatureFlag {
      * @return {@code true} if the cached value is absent or stale
      * @see #getExpiration()
      * @see #isValid()
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(pure = true)
     boolean isExpired();
@@ -96,7 +96,7 @@ public sealed interface FeatureFlag<T> permits SimpleFeatureFlag {
      *
      * @return {@code true} if a non-expired cached value is available
      * @see #getExpiration()
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(pure = true)
     boolean isValid();
@@ -110,7 +110,7 @@ public sealed interface FeatureFlag<T> permits SimpleFeatureFlag {
      *
      * @return a future completing with the flag value
      * @see #fetch()
-     * @since 0.23.0
+     * @since 0.24.0
      */
     CompletableFuture<T> whenReady();
 
@@ -129,7 +129,7 @@ public sealed interface FeatureFlag<T> permits SimpleFeatureFlag {
      *
      * @return a future completing with the latest server value
      * @see #whenReady()
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(mutates = "this")
     CompletableFuture<T> fetch();
@@ -146,7 +146,7 @@ public sealed interface FeatureFlag<T> permits SimpleFeatureFlag {
      *
      * @return a future completing with the updated flag value
      * @see #fetch()
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(mutates = "this")
     CompletableFuture<T> optIn();
@@ -162,7 +162,7 @@ public sealed interface FeatureFlag<T> permits SimpleFeatureFlag {
      *
      * @return a future completing with the updated flag value
      * @see #fetch()
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(mutates = "this")
     CompletableFuture<T> optOut();
@@ -171,7 +171,7 @@ public sealed interface FeatureFlag<T> permits SimpleFeatureFlag {
      * Get the default value for this flag.
      *
      * @return the default value
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(pure = true)
     T getDefaultValue();
@@ -179,27 +179,27 @@ public sealed interface FeatureFlag<T> permits SimpleFeatureFlag {
     /**
      * Supported value types for feature flags.
      *
-     * @since 0.23.0
+     * @since 0.24.0
      */
     enum Type {
         /**
          * A string-valued flag.
          *
-         * @since 0.23.0
+         * @since 0.24.0
          */
         STRING,
 
         /**
          * A boolean-valued flag.
          *
-         * @since 0.23.0
+         * @since 0.24.0
          */
         BOOLEAN,
 
         /**
          * A numeric flag.
          *
-         * @since 0.23.0
+         * @since 0.24.0
          */
         NUMBER
     }

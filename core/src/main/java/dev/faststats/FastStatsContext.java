@@ -10,14 +10,14 @@ import java.time.Duration;
  * Platform-specific contexts should extend this class to provide a shared
  * configuration, token, and metrics factory for their environment.
  *
- * @since 0.23.0
+ * @since 0.24.0
  */
 public sealed interface FastStatsContext permits SimpleContext {
     /**
      * Get the metrics configuration shared by services created from this context.
      *
      * @return the shared configuration
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(pure = true)
     Config getConfig();
@@ -26,7 +26,7 @@ public sealed interface FastStatsContext permits SimpleContext {
      * Get the token shared by services created from this context.
      *
      * @return the shared token
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Token
     @Contract(pure = true)
@@ -36,7 +36,7 @@ public sealed interface FastStatsContext permits SimpleContext {
      * Creates a new platform metrics factory bound to this context.
      *
      * @return a new platform metrics factory
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(value = "-> new", pure = true)
     Metrics.Factory metricsFactory();
@@ -44,8 +44,8 @@ public sealed interface FastStatsContext permits SimpleContext {
     /**
      * Creates a new feature flag service backed by the context's token.
      *
-     * @return the feature flag service
-     * @since 0.23.0
+     * @return a new feature flag service factory
+     * @since 0.24.0
      */
     @Contract(value = "-> new", pure = true)
     FeatureFlagService featureFlags();
@@ -95,7 +95,7 @@ public sealed interface FastStatsContext permits SimpleContext {
      * @see ErrorTracker#attachErrorContext(ClassLoader)
      * @see ErrorTracker#trackError(String, boolean)
      * @see ErrorTracker#trackError(Throwable, boolean)
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(value = " -> new")
     ErrorTracker awareErrorTracker();
@@ -111,7 +111,7 @@ public sealed interface FastStatsContext permits SimpleContext {
      * @see #awareErrorTracker()
      * @see ErrorTracker#trackError(String)
      * @see ErrorTracker#trackError(Throwable)
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(value = " -> new")
     ErrorTracker unawareErrorTracker();

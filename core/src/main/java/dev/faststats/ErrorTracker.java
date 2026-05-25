@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 /**
  * An error tracker.
  *
- * @since 0.23.0
+ * @since 0.24.0
  */
 public sealed interface ErrorTracker permits SimpleErrorTracker {
     /**
@@ -20,7 +20,7 @@ public sealed interface ErrorTracker permits SimpleErrorTracker {
      * @param message the error message
      * @see #trackError(Throwable)
      * @see #trackError(String, boolean)
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(mutates = "this")
     void trackError(String message);
@@ -30,7 +30,7 @@ public sealed interface ErrorTracker permits SimpleErrorTracker {
      *
      * @param error the error
      * @see #trackError(Throwable, boolean)
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(mutates = "this")
     void trackError(Throwable error);
@@ -43,7 +43,7 @@ public sealed interface ErrorTracker permits SimpleErrorTracker {
      * @param message the error message
      * @param handled whether the error was handled
      * @see #trackError(Throwable, boolean)
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(mutates = "this")
     void trackError(String message, boolean handled);
@@ -55,7 +55,7 @@ public sealed interface ErrorTracker permits SimpleErrorTracker {
      *
      * @param error   the error
      * @param handled whether the error was handled
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(mutates = "this")
     void trackError(Throwable error, boolean handled);
@@ -68,7 +68,7 @@ public sealed interface ErrorTracker permits SimpleErrorTracker {
      *
      * @param type the error type
      * @return the error tracker
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(value = "_ -> this", mutates = "this")
     ErrorTracker ignoreError(Class<? extends Throwable> type);
@@ -87,7 +87,7 @@ public sealed interface ErrorTracker permits SimpleErrorTracker {
      *
      * @param pattern the regex pattern to match against error messages
      * @return the error tracker
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(value = "_ -> this", mutates = "this")
     ErrorTracker ignoreError(Pattern pattern);
@@ -100,7 +100,7 @@ public sealed interface ErrorTracker permits SimpleErrorTracker {
      * @param pattern the regex pattern string to match against error messages
      * @return the error tracker
      * @see #ignoreError(Pattern)
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(value = "_ -> this", mutates = "this")
     default ErrorTracker ignoreError(@RegExp final String pattern) {
@@ -118,7 +118,7 @@ public sealed interface ErrorTracker permits SimpleErrorTracker {
      * @param type    the error type
      * @param pattern the regex pattern to match against error messages
      * @return the error tracker
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(value = "_, _ -> this", mutates = "this")
     ErrorTracker ignoreError(Class<? extends Throwable> type, Pattern pattern);
@@ -132,7 +132,7 @@ public sealed interface ErrorTracker permits SimpleErrorTracker {
      * @param pattern the regex pattern string to match against error messages
      * @return the error tracker
      * @see #ignoreError(Class, Pattern)
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(value = "_, _ -> this", mutates = "this")
     default ErrorTracker ignoreError(final Class<? extends Throwable> type, @RegExp final String pattern) {
@@ -149,7 +149,7 @@ public sealed interface ErrorTracker permits SimpleErrorTracker {
      * @param replacement the replacement string
      * @return the error tracker
      * @see java.util.regex.Matcher#replaceAll(String)
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(value = "_, _ -> this", mutates = "this")
     ErrorTracker anonymize(Pattern pattern, String replacement);
@@ -162,7 +162,7 @@ public sealed interface ErrorTracker permits SimpleErrorTracker {
      * @return the error tracker
      * @see #anonymize(Pattern, String)
      * @see java.util.regex.Matcher#replaceAll(String)
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(value = "_, _ -> this", mutates = "this")
     default ErrorTracker anonymize(@RegExp final String pattern, final String replacement) {

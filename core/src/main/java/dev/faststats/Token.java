@@ -15,7 +15,7 @@ import static java.lang.annotation.ElementType.PARAMETER;
 /**
  * An annotation to mark a token.
  *
- * @since 0.23.0
+ * @since 0.24.0
  */
 @NonNls
 @Pattern(Token.PATTERN)

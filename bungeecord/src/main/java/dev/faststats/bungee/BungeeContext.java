@@ -11,7 +11,7 @@ import org.jetbrains.annotations.Contract;
 /**
  * BungeeCord FastStats context.
  *
- * @since 0.23.0
+ * @since 0.24.0
  */
 public final class BungeeContext extends SimpleContext {
     final Plugin plugin;

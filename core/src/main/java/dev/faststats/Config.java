@@ -7,14 +7,14 @@ import java.util.UUID;
 /**
  * A representation of the metrics configuration.
  *
- * @since 0.23.0
+ * @since 0.24.0
  */
 public interface Config {
     /**
      * The server id.
      *
      * @return the server id
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(pure = true)
     UUID serverId();
@@ -26,7 +26,7 @@ public interface Config {
      * <b>Users have to be able to opt out from metrics submission.</b>
      *
      * @return {@code true} if metrics submission is enabled, {@code false} otherwise
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(pure = true)
     boolean enabled();
@@ -35,7 +35,7 @@ public interface Config {
      * Whether error tracking is enabled across all metrics instances.
      *
      * @return {@code true} if error tracking is enabled, {@code false} otherwise
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(pure = true)
     boolean errorTracking();

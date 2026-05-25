@@ -12,7 +12,7 @@ import org.jetbrains.annotations.Contract;
 /**
  * Fabric FastStats context.
  *
- * @since 0.23.0
+ * @since 0.24.0
  */
 public final class FabricContext extends SimpleContext {
     final ModContainer mod;

@@ -10,7 +10,7 @@ import java.util.Optional;
  * <p>
  * Use one of the static {@code create} methods to construct a service instance.
  *
- * @since 0.23.0
+ * @since 0.24.0
  */
 public sealed interface FeatureFlagService permits SimpleFeatureFlagService {
     /**
@@ -19,7 +19,7 @@ public sealed interface FeatureFlagService permits SimpleFeatureFlagService {
      * @param id           the flag identifier
      * @param defaultValue the default value
      * @return the feature flag
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(value = "_, _ -> new", pure = true)
     FeatureFlag<Boolean> define(String id, boolean defaultValue);
@@ -31,7 +31,7 @@ public sealed interface FeatureFlagService permits SimpleFeatureFlagService {
      * @param defaultValue the default value
      * @param attributes   the per-flag targeting attributes, merged with the service attributes
      * @return the feature flag
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(value = "_, _, _ -> new", pure = true)
     FeatureFlag<Boolean> define(String id, boolean defaultValue, Attributes attributes);
@@ -42,7 +42,7 @@ public sealed interface FeatureFlagService permits SimpleFeatureFlagService {
      * @param id           the flag identifier
      * @param defaultValue the default value
      * @return the feature flag
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(value = "_, _ -> new", pure = true)
     FeatureFlag<String> define(String id, String defaultValue);
@@ -54,7 +54,7 @@ public sealed interface FeatureFlagService permits SimpleFeatureFlagService {
      * @param defaultValue the default value
      * @param attributes   the per-flag targeting attributes, merged with the service attributes
      * @return the feature flag
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(value = "_, _, _ -> new", pure = true)
     FeatureFlag<String> define(String id, String defaultValue, Attributes attributes);
@@ -65,7 +65,7 @@ public sealed interface FeatureFlagService permits SimpleFeatureFlagService {
      * @param id           the flag identifier
      * @param defaultValue the default value
      * @return the feature flag
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(value = "_, _ -> new", pure = true)
     FeatureFlag<Number> define(String id, Number defaultValue);
@@ -77,7 +77,7 @@ public sealed interface FeatureFlagService permits SimpleFeatureFlagService {
      * @param defaultValue the default value
      * @param attributes   the per-flag targeting attributes, merged with the service attributes
      * @return the feature flag
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(value = "_, _, _ -> new", pure = true)
     FeatureFlag<Number> define(String id, Number defaultValue, Attributes attributes);
@@ -89,7 +89,7 @@ public sealed interface FeatureFlagService permits SimpleFeatureFlagService {
      * merged with any per-flag attributes supplied during definition.
      *
      * @return the global targeting attributes, if configured
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(pure = true)
     Optional<Attributes> getAttributes();
@@ -98,14 +98,14 @@ public sealed interface FeatureFlagService permits SimpleFeatureFlagService {
      * Returns the cache time-to-live used for resolved flag values.
      *
      * @return the configured cache time-to-live
-     * @since 0.23.0
+     * @since 0.24.0
      */
     Duration getTTL();
 
     /**
      * Shuts down the feature flag service.
      *
-     * @since 0.23.0
+     * @since 0.24.0
      */
     @Contract(mutates = "this")
     void shutdown();

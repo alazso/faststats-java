@@ -16,7 +16,7 @@ import java.nio.file.Path;
 /**
  * Velocity FastStats context.
  *
- * @since 0.23.0
+ * @since 0.24.0
  */
 public final class VelocityContext extends SimpleContext {
     final PluginContainer plugin;
@@ -47,7 +47,7 @@ public final class VelocityContext extends SimpleContext {
     /**
      * Injectable Velocity context builder.
      *
-     * @since 0.23.0
+     * @since 0.24.0
      */
     public static final class Builder {
         private final PluginContainer plugin;
@@ -60,7 +60,7 @@ public final class VelocityContext extends SimpleContext {
          * @param server        the velocity server
          * @param dataDirectory the plugin data directory
          * @apiNote This instance can be injected into your plugin.
-         * @since 0.23.0
+         * @since 0.24.0
          */
         @Inject
         public Builder(
@@ -79,7 +79,7 @@ public final class VelocityContext extends SimpleContext {
          * @param token the FastStats project token
          * @return the Velocity context
          * @throws IllegalArgumentException if the token is invalid
-         * @since 0.23.0
+         * @since 0.24.0
          */
         public VelocityContext build(@Token final String token) throws IllegalArgumentException {
             return new VelocityContext(plugin, server, dataDirectory, token);

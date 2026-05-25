@@ -29,7 +29,7 @@ public non-sealed abstract class SimpleContext implements FastStatsContext {
      * @throws IllegalArgumentException if the SDK information is invalid
      * @throws IllegalStateException    if the SDK information is incomplete or missing
      * @throws UncheckedIOException     if an IO error occurs
-     * @since 0.23.0
+     * @since 0.24.0
      */
     protected SimpleContext(final Config config, final String name, @Token final String token) throws IllegalArgumentException {
         this.sdkInfo = constructSdkInfo(name);
