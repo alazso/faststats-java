@@ -4,6 +4,7 @@ import com.google.gson.JsonElement;
 import org.jetbrains.annotations.Contract;
 import org.jspecify.annotations.Nullable;
 
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.Callable;
 
@@ -33,7 +34,7 @@ public interface Metric<T> {
      * @since 0.16.0
      */
     @Contract(pure = true)
-    Optional<T> compute() throws Exception;
+    Optional<? extends T> compute() throws Exception;
 
     /**
      * Get the metric data as a JSON element.
@@ -94,6 +95,54 @@ public interface Metric<T> {
     @Contract(value = "_, _ -> new", pure = true)
     static Metric<Number[]> numberArray(@SourceId final String id, final Callable<Number @Nullable []> callable) throws IllegalArgumentException {
         return new ArrayMetric<>(id, callable);
+    }
+
+    /**
+     * Create a string map metric.
+     *
+     * @param id       the source id
+     * @param callable the metric data callable
+     * @return the string map metric
+     * @throws IllegalArgumentException if the source id is invalid
+     * @apiNote The callable must be thread-safe and pure (i.e. not modify any shared state).
+     * @see #compute()
+     * @since 0.23.0
+     */
+    @Contract(value = "_, _ -> new", pure = true)
+    static Metric<Map<String, ? extends String>> stringMap(@SourceId final String id, final Callable<? extends @Nullable Map<String, String>> callable) throws IllegalArgumentException {
+        return new MapMetric<>(id, callable);
+    }
+
+    /**
+     * Create a boolean map metric.
+     *
+     * @param id       the source id
+     * @param callable the metric data callable
+     * @return the boolean map metric
+     * @throws IllegalArgumentException if the source id is invalid
+     * @apiNote The callable must be thread-safe and pure (i.e. not modify any shared state).
+     * @see #compute()
+     * @since 0.23.0
+     */
+    @Contract(value = "_, _ -> new", pure = true)
+    static Metric<Map<String, ? extends Boolean>> booleanMap(@SourceId final String id, final Callable<? extends @Nullable Map<String, Boolean>> callable) throws IllegalArgumentException {
+        return new MapMetric<>(id, callable);
+    }
+
+    /**
+     * Create a number map metric.
+     *
+     * @param id       the source id
+     * @param callable the metric data callable
+     * @return the number map metric
+     * @throws IllegalArgumentException if the source id is invalid
+     * @apiNote The callable must be thread-safe and pure (i.e. not modify any shared state).
+     * @see #compute()
+     * @since 0.23.0
+     */
+    @Contract(value = "_, _ -> new", pure = true)
+    static Metric<Map<String, ? extends Number>> numberMap(@SourceId final String id, final Callable<? extends @Nullable Map<String, ? extends Number>> callable) throws IllegalArgumentException {
+        return new MapMetric<>(id, callable);
     }
 
     /**
