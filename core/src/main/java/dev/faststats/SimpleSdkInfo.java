@@ -31,4 +31,9 @@ final class SimpleSdkInfo implements SdkInfo {
     public String getVersion() {
         return version;
     }
+
+    @Override
+    public String getUserAgent() {
+        return "FastStats Metrics " + name + "/" + version;
+    }
 }

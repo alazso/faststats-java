@@ -142,14 +142,12 @@ public abstract class SimpleMetrics implements Metrics {
             final var compressed = byteOutput.toByteArray();
             logger.info("Compressed size: %s bytes", compressed.length);
 
-            final var sdk = context.getSdkInfo();
-            final var agent = "FastStats Metrics " + sdk.getName() + "/" + sdk.getVersion();
             final var request = HttpRequest.newBuilder()
                     .POST(HttpRequest.BodyPublishers.ofByteArray(compressed))
                     .header("Content-Encoding", "gzip")
                     .header("Content-Type", "application/octet-stream")
                     .header("Authorization", "Bearer " + context.getToken())
-                    .header("User-Agent", agent)
+                    .header("User-Agent", context.getSdkInfo().getUserAgent())
                     .timeout(Duration.ofSeconds(3))
                     .uri(url)
                     .build();
