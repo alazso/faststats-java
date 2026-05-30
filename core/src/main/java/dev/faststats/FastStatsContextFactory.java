@@ -15,7 +15,7 @@ import java.util.function.Function;
  * @since 0.24.0
  */
 public abstract class FastStatsContextFactory<C extends SimpleContext, F extends FastStatsContextFactory<C, F>> {
-    private @Nullable ErrorTracker errorTrecker;
+    private @Nullable ErrorTracker errorTracker;
     private @Nullable Function<Metrics.Factory, Metrics> metrics = null;
     private @Nullable Function<FeatureFlagService.Factory, FeatureFlagService> featureFlagService;
 
@@ -28,7 +28,7 @@ public abstract class FastStatsContextFactory<C extends SimpleContext, F extends
      */
     @Contract(value = "_ -> this", mutates = "this")
     public F errorTracker(final ErrorTracker errorTracker) {
-        this.errorTrecker = errorTracker;
+        this.errorTracker = errorTracker;
         return self();
     }
 
@@ -69,8 +69,8 @@ public abstract class FastStatsContextFactory<C extends SimpleContext, F extends
     @Contract(value = " -> new", mutates = "io")
     public final C create() {
         final var context = createContext();
-        if (errorTrecker != null)
-            context.setErrorTracker(errorTrecker);
+        if (errorTracker != null)
+            context.setErrorTracker(errorTracker);
         if (metrics != null)
             context.setMetrics(metrics.apply(context.metricsFactory()));
         if (featureFlagService != null)
