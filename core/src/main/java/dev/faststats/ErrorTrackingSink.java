@@ -134,6 +134,7 @@ final class ErrorTrackingSink {
 
             final var compressed = byteOutput.toByteArray();
             logger.info("Sending errors to: %s", url);
+            logger.info("Uncompressed data: %s", data);
             // todo: dedupe this
             final var request = HttpRequest.newBuilder()
                     .POST(HttpRequest.BodyPublishers.ofByteArray(compressed))
