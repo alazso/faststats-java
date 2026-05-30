@@ -12,6 +12,7 @@ import java.util.function.Function;
  * platform-specific objects before creating the context.
  *
  * @param <C> the context type created by this factory
+ * @param <F> the concrete factory type
  * @since 0.24.0
  */
 public abstract class FastStatsContextFactory<C extends SimpleContext, F extends FastStatsContextFactory<C, F>> {
