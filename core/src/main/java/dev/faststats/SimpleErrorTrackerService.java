@@ -27,7 +27,7 @@ import java.util.zip.GZIPOutputStream;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 final class SimpleErrorTrackerService implements ErrorTrackerService {
-    private final Logger logger = LoggerFactory.factory().getLogger(getClass());
+    private static final Logger logger = LoggerFactory.factory().getLogger(SimpleErrorTrackerService.class);
     private final HttpClient httpClient = HttpClient.newBuilder()
             .connectTimeout(Duration.ofSeconds(3))
             .version(HttpClient.Version.HTTP_1_1)
@@ -86,6 +86,8 @@ final class SimpleErrorTrackerService implements ErrorTrackerService {
                 if (loader != null && !ErrorHelper.isSameLoader(loader, error)) continue;
                 tracker.trackError(error).handled(false);
                 tracker.getContextErrorHandler().ifPresent(handler -> handler.accept(loader, error));
+            } catch (final Throwable t) {
+                logger.error("Failed to dispatch uncaught error to tracker", t);
             }
         }
 
@@ -98,7 +100,6 @@ final class SimpleErrorTrackerService implements ErrorTrackerService {
         if (property != null) try {
             return new URI(property);
         } catch (final URISyntaxException e) {
-            final var logger = LoggerFactory.factory().getLogger(SimpleMetrics.class);
             logger.error("Failed to parse error tracker server url: %s", e, property);
         }
         return URI.create("https://metrics.faststats.dev/v1/error");
