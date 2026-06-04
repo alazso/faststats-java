@@ -29,6 +29,10 @@ public class ExamplePlugin extends JavaPlugin {
 
     public ExamplePlugin(final JavaPluginInit init) {
         super(init);
+    }
+
+    @Override
+    protected void setup() {
         context.ready(); // start metrics and errors submission
     }
 
