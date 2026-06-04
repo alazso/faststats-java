@@ -31,8 +31,8 @@ public final class ExampleServer {
 
         server.start("0.0.0.0", 25565);
         MinecraftServer.getSchedulerManager().buildShutdownTask(ExampleServer::shutdown);
-        
-        context.ready(); // register additional error handlers and start metrics submission
+
+        context.ready(); // start metrics and errors submission
     }
 
     public static void shutdown() {

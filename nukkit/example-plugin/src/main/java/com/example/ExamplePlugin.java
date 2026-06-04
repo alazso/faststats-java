@@ -28,7 +28,7 @@ public final class ExamplePlugin extends PluginBase {
 
     @Override
     public void onEnable() {
-        context.ready(); // start metrics submission
+        context.ready(); // start metrics and errors submission
     }
 
     @Override
