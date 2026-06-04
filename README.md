@@ -43,10 +43,10 @@ Use the `*-all.jar` file from the example module's `build/libs` directory.
 
 ### Fabric example mod
 
-Fabric mods should be packaged by Fabric Loom, not Shadow. Build the remapped mod jar with:
+Fabric mods should be packaged by Fabric Loom, not Shadow. Build the mod jar with:
 
 ```sh
-./gradlew :fabric:example-mod:remapJar
+./gradlew :fabric:example-mod:jar
 ```
 
 Use `fabric/example-mod/build/libs/example-mod-<version>.jar`. Do not use a Shadow `*-all.jar` for Fabric; it can bundle Minecraft and loader internals into the mod.

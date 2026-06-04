@@ -1,12 +1,12 @@
 plugins {
-    id("fabric-loom")
+    id("net.fabricmc.fabric-loom")
 }
 
 dependencies {
     implementation(project(":fabric"))
-    mappings(loom.officialMojangMappings())
-    minecraft("com.mojang:minecraft:1.21.11")
-    modCompileOnly("net.fabricmc:fabric-loader:0.19.3")
+    minecraft("com.mojang:minecraft:26.1.2")
+    implementation("net.fabricmc.fabric-api:fabric-api:0.150.0+26.1.2")
+    compileOnly("net.fabricmc:fabric-loader:0.19.3")
 }
 
 tasks.jar {

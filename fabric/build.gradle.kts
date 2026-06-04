@@ -1,14 +1,13 @@
 val moduleName by extra("dev.faststats.fabric")
 
 plugins {
-    id("fabric-loom") version ("1.15-SNAPSHOT")
+    id("net.fabricmc.fabric-loom") version ("1.15-SNAPSHOT")
 }
 
 dependencies {
     api(project(":core"))
     implementation(project(":config"))
-    mappings(loom.officialMojangMappings())
-    minecraft("com.mojang:minecraft:1.21.11")
-    modCompileOnly("net.fabricmc.fabric-api:fabric-api:0.139.4+1.21.11")
-    modImplementation("net.fabricmc:fabric-loader:0.19.3")
+    minecraft("com.mojang:minecraft:26.1.2")
+    compileOnly("net.fabricmc.fabric-api:fabric-api:0.150.0+26.1.2")
+    compileOnly("net.fabricmc:fabric-loader:0.19.3")
 }

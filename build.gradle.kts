@@ -6,8 +6,8 @@ plugins {
 val javaVersionsOverride = mapOf(
     ":bukkit" to 21,
     ":bukkit:example-plugin" to 21,
-    ":fabric" to 21,
-    ":fabric:example-mod" to 21,
+    ":fabric" to 25,
+    ":fabric:example-mod" to 25,
     ":hytale" to 25,
     ":hytale:example-plugin" to 25,
     ":minestom" to 25,
