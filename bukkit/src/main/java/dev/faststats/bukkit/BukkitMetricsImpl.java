@@ -91,8 +91,11 @@ final class BukkitMetricsImpl extends SimpleMetrics implements BukkitMetrics {
     }
 
     public static final class Factory extends SimpleMetrics.Factory implements BukkitMetrics.Factory {
-        Factory(final BukkitContext context) {
+        private final Plugin plugin;
+
+        Factory(final BukkitContext context, final Plugin plugin) {
             super(context);
+            this.plugin = plugin;
         }
 
         @Override
@@ -107,7 +110,7 @@ final class BukkitMetricsImpl extends SimpleMetrics implements BukkitMetrics {
 
         @Override
         public BukkitMetrics create() throws IllegalStateException {
-            return new BukkitMetricsImpl(this, ((BukkitContext) context).plugin);
+            return new BukkitMetricsImpl(this, plugin);
         }
     }
 }

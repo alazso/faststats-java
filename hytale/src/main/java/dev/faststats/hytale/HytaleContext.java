@@ -14,11 +14,11 @@ import org.jetbrains.annotations.Contract;
  * @since 0.24.0
  */
 public final class HytaleContext extends SimpleContext {
-    private final String pluginName;
+    private final JavaPlugin plugin;
 
     private HytaleContext(final Factory factory, final JavaPlugin plugin, @Token final String token) {
         super(factory, SimpleConfig.read(plugin.getDataDirectory().toAbsolutePath().getParent().resolve("faststats").resolve("config.properties")), "hytale", token);
-        this.pluginName = plugin.getName();
+        this.plugin = plugin;
         initializeServices(factory);
     }
 
@@ -36,7 +36,7 @@ public final class HytaleContext extends SimpleContext {
 
     @Override
     public String getProjectName() {
-        return pluginName;
+        return plugin.getName();
     }
 
     public static final class Factory extends SimpleContext.Factory<HytaleContext, Factory> {

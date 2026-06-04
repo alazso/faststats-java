@@ -15,7 +15,7 @@ import org.jetbrains.annotations.Contract;
  * @since 0.24.0
  */
 public final class FabricContext extends SimpleContext {
-    final ModContainer mod;
+    private final ModContainer mod;
 
     private FabricContext(final Factory factory, final String modId, @Token final String token) {
         super(factory, SimpleConfig.read(FabricLoader.getInstance().getConfigDir().resolve("faststats").resolve("config.properties")), "fabric", token);

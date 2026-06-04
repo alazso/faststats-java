@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Contract;
  * @since 0.24.0
  */
 public final class BungeeContext extends SimpleContext {
-    final Plugin plugin;
+    private final Plugin plugin;
 
     private BungeeContext(final Factory factory, final Plugin plugin, @Token final String token) {
         super(factory, SimpleConfig.read(plugin.getProxy().getPluginsFolder().toPath().resolve("faststats").resolve("config.properties")), "bungeecord", token);
