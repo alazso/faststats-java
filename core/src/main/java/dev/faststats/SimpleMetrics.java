@@ -51,9 +51,7 @@ public abstract class SimpleMetrics extends SubmissionService implements Metrics
     private void startSubmitting(final long initialDelay, final long period, final TimeUnit unit) {
         if (!context.preSubmissionStart()) return;
 
-        final var enabled = Boolean.parseBoolean(System.getProperty("faststats.enabled", "true"));
-
-        if (!context.getConfig().submitMetrics() || !enabled) {
+        if (!context.getConfig().submitMetrics()) {
             logger.warn("Metrics disabled, not starting submission");
             return;
         }

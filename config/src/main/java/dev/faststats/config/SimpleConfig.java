@@ -63,6 +63,7 @@ public record SimpleConfig(
     @Contract(mutates = "io")
     public static SimpleConfig read(final Path file) throws RuntimeException {
         final var debugFlag = Boolean.getBoolean("faststats.debug");
+        final var enabledFlag = Boolean.parseBoolean(System.getProperty("faststats.enabled", "true"));
 
         final var properties = readOrEmpty(file);
         final var firstRun = properties == null;
@@ -112,11 +113,11 @@ public record SimpleConfig(
 
         return new SimpleConfig(
                 serverId,
-                enabled,
-                enabled && additionalMetrics,
+                enabled && enabledFlag,
+                enabled && enabledFlag && additionalMetrics,
                 debug || debugFlag,
-                enabled && submitMetrics,
-                enabled && errorTracking,
+                enabled && enabledFlag && submitMetrics,
+                enabled && enabledFlag && errorTracking,
                 firstRun
         );
     }
