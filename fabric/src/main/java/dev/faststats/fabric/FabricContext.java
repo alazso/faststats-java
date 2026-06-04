@@ -44,7 +44,6 @@ public final class FabricContext extends SimpleContext {
         return new SimpleMetrics.Factory(this) {
             @Override
             public Metrics create() throws IllegalStateException {
-                final var mod = ((FabricContext) context).mod;
                 return switch (FabricLoader.getInstance().getEnvironmentType()) {
                     case CLIENT -> new FabricMetricsClient(this, mod);
                     case SERVER -> new FabricMetricsServer(this, mod);
