@@ -32,10 +32,10 @@ public record SpongeConfig(
         boolean firstRun
 ) implements Config {
     private static final Logger logger = LoggerFactory.factory().getLogger(SpongeConfig.class);
-    private static final int CONFIG_VERSION = 1;
+    private static final int CONFIG_VERSION = 2;
 
     private static final String COMMENT = """
-             FastStats (https://faststats.dev) collects anonymous usage statistics.
+             FastStats (https://faststats.dev) collects anonymous usage statistics and errors.
             # This helps developers understand how their projects are used in the real world.
             #
             # No IP addresses, player data, or personal information is collected.
@@ -54,12 +54,12 @@ public record SpongeConfig(
             # For more information, visit: https://faststats.dev/info
             """;
     private static final String ONBOARDING_MESSAGE = """
-            This plugin uses FastStats to collect anonymous usage statistics.
+            This plugin uses FastStats to collect anonymous usage statistics and errors.
             No personal or identifying information is ever collected.
             It is recommended to enable metrics by setting 'global-state=TRUE' in the sponge metrics config.
             Learn more at: https://faststats.dev/info
             
-            Since this is your first start with FastStats, metrics submission will not start
+            Since this is your first start with FastStats, submission will not start
             until you restart the server to allow you to opt out if you prefer.
             """;
 
@@ -89,8 +89,8 @@ public record SpongeConfig(
         else if (configVersion > CONFIG_VERSION) saveConfig.set(false);
 
         if (saveConfig.get()) try {
-            if (configVersion == null || configVersion < CONFIG_VERSION)
-                logger.info("Updating config version to %s", CONFIG_VERSION);
+            if (configVersion != null && configVersion < CONFIG_VERSION)
+                logger.info("Updating config version from %s to %s", configVersion, CONFIG_VERSION);
             Files.createDirectories(file.getParent());
             try (final var out = Files.newOutputStream(file);
                  final var writer = new OutputStreamWriter(out, UTF_8)) {
