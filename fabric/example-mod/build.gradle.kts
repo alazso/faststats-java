@@ -5,7 +5,7 @@ plugins {
 dependencies {
     implementation(project(":fabric"))
     minecraft("com.mojang:minecraft:26.1.2")
-    implementation("net.fabricmc.fabric-api:fabric-api:0.150.0+26.1.2")
+    implementation("net.fabricmc.fabric-api:fabric-api:0.152.1+26.2")
     compileOnly("net.fabricmc:fabric-loader:0.19.3")
 }
 
