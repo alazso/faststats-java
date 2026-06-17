@@ -34,7 +34,8 @@ public final class BukkitContext extends SimpleContext {
 
     @Override
     public void ready() {
-        if (!ready) try {
+        try {
+            if (ready) return;
             Class.forName("com.destroystokyo.paper.event.server.ServerExceptionEvent");
             plugin.getServer().getPluginManager().registerEvents(new PaperEventListener(plugin, this), plugin);
         } catch (final ClassNotFoundException ignored) {
