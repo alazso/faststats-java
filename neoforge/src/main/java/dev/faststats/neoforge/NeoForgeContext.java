@@ -5,6 +5,7 @@ import dev.faststats.SimpleContext;
 import dev.faststats.SimpleMetrics;
 import dev.faststats.Token;
 import dev.faststats.config.SimpleConfig;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.fml.loading.FMLPaths;
@@ -24,7 +25,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * NeoForge FastStats context.
  *
- * @since 0.26.2
+ * @since 0.27.0
  */
 public final class NeoForgeContext extends SimpleContext {
     private final ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor(runnable -> {
@@ -37,7 +38,7 @@ public final class NeoForgeContext extends SimpleContext {
 
     private NeoForgeContext(final Factory factory, final String modId, @Token final String token) {
         super(factory, SimpleConfig.read(FMLPaths.CONFIGDIR.get().resolve("faststats").resolve("config.properties")), "neoforge", token);
-        this.mod = ModList.get().getModContainerById(modId).map(container -> container.getModInfo()).orElseThrow(() -> {
+        this.mod = ModList.get().getModContainerById(modId).map(ModContainer::getModInfo).orElseThrow(() -> {
             return new IllegalArgumentException("Mod not found: " + modId);
         });
         initializeServices(factory);
