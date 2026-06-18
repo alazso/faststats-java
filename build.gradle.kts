@@ -94,7 +94,11 @@ subprojects {
 
     tasks.javadoc {
         val options = options as StandardJavadocDocletOptions
-        options.tags("apiNote:a:API Note:", "implSpec:a:Implementation Requirements:", "implNote:a:Implementation Note:")
+        options.tags(
+            "apiNote:a:API Note:",
+            "implSpec:a:Implementation Requirements:",
+            "implNote:a:Implementation Note:"
+        )
         project.findProperty("moduleName")?.let { moduleName ->
             options.addStringOption("-add-reads", "$moduleName=ALL-UNNAMED")
         }

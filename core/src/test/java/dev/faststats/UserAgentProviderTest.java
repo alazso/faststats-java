@@ -16,7 +16,7 @@ public final class UserAgentProviderTest {
 
     public static final class CustomUserAgentProvider implements SdkInfo.UserAgentProvider {
         static final String USER_AGENT = "Example Vendor Example SDK/1.2.3 https://example.com/support";
-    
+
         @Override
         public String getUserAgent(final SdkInfo sdkInfo) {
             return USER_AGENT;
