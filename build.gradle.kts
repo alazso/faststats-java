@@ -1,6 +1,7 @@
 plugins {
     id("java")
     id("com.gradleup.shadow") version "9.4.2" apply false
+    kotlin("jvm") version "2.3.20" apply false
 }
 
 val javaVersionsOverride = mapOf(
@@ -27,6 +28,7 @@ subprojects {
 
     val example = project.name.startsWith("example")
     if (example) {
+        apply { plugin("org.jetbrains.kotlin.jvm") }
         if (project.path != ":fabric:example-mod" && project.path != ":neoforge:example-mod") {
             apply { plugin("com.gradleup.shadow") }
         }

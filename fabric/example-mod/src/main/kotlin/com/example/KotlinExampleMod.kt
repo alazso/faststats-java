@@ -6,7 +6,7 @@ import dev.faststats.fabric.FabricContext
 import net.fabricmc.api.ModInitializer
 import java.util.concurrent.atomic.AtomicInteger
 
-class ExampleMod : ModInitializer {
+class KotlinExampleMod : ModInitializer {
     private val gameCount = AtomicInteger()
 
     private val context = FabricContext.Factory(

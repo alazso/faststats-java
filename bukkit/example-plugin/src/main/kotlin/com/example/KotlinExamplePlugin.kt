@@ -6,7 +6,7 @@ import dev.faststats.data.Metric
 import org.bukkit.plugin.java.JavaPlugin
 import java.util.concurrent.atomic.AtomicInteger
 
-class ExamplePlugin : JavaPlugin() {
+class KotlinExamplePlugin : JavaPlugin() {
     private val gameCount = AtomicInteger()
 
     private val context = BukkitContext.Factory(this, "YOUR_TOKEN_HERE")

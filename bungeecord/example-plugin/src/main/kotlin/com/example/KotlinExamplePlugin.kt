@@ -1,27 +1,15 @@
 package com.example
 
-import com.google.inject.Inject
-import com.velocitypowered.api.event.Subscribe
-import com.velocitypowered.api.event.proxy.ProxyInitializeEvent
-import com.velocitypowered.api.event.proxy.ProxyShutdownEvent
-import com.velocitypowered.api.plugin.Plugin
 import dev.faststats.ErrorTracker
+import dev.faststats.bungee.BungeeContext
 import dev.faststats.data.Metric
-import dev.faststats.velocity.VelocityContext
+import net.md_5.bungee.api.plugin.Plugin
 import java.util.concurrent.atomic.AtomicInteger
 
-@Plugin(
-    id = "example",
-    name = "Example Plugin",
-    version = "1.0.0",
-    url = "https://example.com",
-    authors = ["Your Name"],
-)
-class ExamplePlugin @Inject constructor(contextBuilder: VelocityContext.Builder) {
+class KotlinExamplePlugin : Plugin() {
     private val gameCount = AtomicInteger()
 
-    private val context = contextBuilder
-        .token("YOUR_TOKEN_HERE")
+    private val context = BungeeContext.Factory(this, "YOUR_TOKEN_HERE")
         .errorTrackerService(ERROR_TRACKER)
         // .metrics(Metrics.Factory::create) // Define a minimal metrics instance without any custom metrics
         .metrics { factory ->
@@ -38,13 +26,11 @@ class ExamplePlugin @Inject constructor(contextBuilder: VelocityContext.Builder)
         }
         .create()
 
-    @Subscribe
-    fun onProxyInitialize(event: ProxyInitializeEvent) {
+    override fun onEnable() {
         context.ready() // start metrics and errors submission
     }
 
-    @Subscribe
-    fun onProxyStop(event: ProxyShutdownEvent) {
+    override fun onDisable() {
         context.shutdown() // safely shut down configured services
     }
 

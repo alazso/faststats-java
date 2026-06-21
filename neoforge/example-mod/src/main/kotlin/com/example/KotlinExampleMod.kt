@@ -7,7 +7,7 @@ import net.neoforged.fml.common.Mod
 import java.util.concurrent.atomic.AtomicInteger
 
 @Mod("example_mod")
-class ExampleMod {
+class KotlinExampleMod {
     private val gameCount = AtomicInteger()
 
     private val context = NeoForgeContext.Factory(

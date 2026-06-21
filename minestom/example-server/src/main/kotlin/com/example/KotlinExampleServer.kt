@@ -6,7 +6,7 @@ import dev.faststats.minestom.MinestomContext
 import net.minestom.server.MinecraftServer
 import java.util.concurrent.atomic.AtomicInteger
 
-object ExampleServer {
+object KotlinExampleServer {
     val ERROR_TRACKER: ErrorTracker = ErrorTracker.contextAware()
     private val gameCount = AtomicInteger()
 

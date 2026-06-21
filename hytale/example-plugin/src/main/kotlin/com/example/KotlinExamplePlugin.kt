@@ -1,15 +1,16 @@
 package com.example
 
+import com.hypixel.hytale.server.core.plugin.JavaPlugin
+import com.hypixel.hytale.server.core.plugin.JavaPluginInit
 import dev.faststats.ErrorTracker
-import dev.faststats.bungee.BungeeContext
 import dev.faststats.data.Metric
-import net.md_5.bungee.api.plugin.Plugin
+import dev.faststats.hytale.HytaleContext
 import java.util.concurrent.atomic.AtomicInteger
 
-class ExamplePlugin : Plugin() {
+class KotlinExamplePlugin(init: JavaPluginInit) : JavaPlugin(init) {
     private val gameCount = AtomicInteger()
 
-    private val context = BungeeContext.Factory(this, "YOUR_TOKEN_HERE")
+    private val context = HytaleContext.Factory(this, "YOUR_TOKEN_HERE")
         .errorTrackerService(ERROR_TRACKER)
         // .metrics(Metrics.Factory::create) // Define a minimal metrics instance without any custom metrics
         .metrics { factory ->
@@ -26,11 +27,11 @@ class ExamplePlugin : Plugin() {
         }
         .create()
 
-    override fun onEnable() {
+    override fun setup() {
         context.ready() // start metrics and errors submission
     }
 
-    override fun onDisable() {
+    override fun shutdown() {
         context.shutdown() // safely shut down configured services
     }
 

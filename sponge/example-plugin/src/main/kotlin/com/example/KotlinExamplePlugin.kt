@@ -12,7 +12,7 @@ import org.spongepowered.plugin.builtin.jvm.Plugin
 import java.util.concurrent.atomic.AtomicInteger
 
 @Plugin("example")
-class ExamplePlugin {
+class KotlinExamplePlugin {
     @Inject
     private lateinit var contextBuilder: SpongeContext.Builder
 

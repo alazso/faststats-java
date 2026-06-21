@@ -6,7 +6,7 @@ import dev.faststats.data.Metric
 import dev.faststats.nukkit.NukkitContext
 import java.util.concurrent.atomic.AtomicInteger
 
-class ExamplePlugin : PluginBase() {
+class KotlinExamplePlugin : PluginBase() {
     private val gameCount = AtomicInteger()
 
     private val context = NukkitContext.Factory(this, "YOUR_TOKEN_HERE")
